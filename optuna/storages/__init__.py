@@ -46,8 +46,8 @@ def get_storage(storage: None | str | BaseStorage) -> BaseStorage:
             raise ValueError(
                 "RedisStorage is removed at Optuna v3.1.0. Please use JournalRedisBackend instead."
             )
-        return _CachedStorage(RDBStorage(storage))
+        return RDBStorage(storage)
     elif isinstance(storage, RDBStorage):
-        return _CachedStorage(storage)
+        return storage
     else:
         return storage
