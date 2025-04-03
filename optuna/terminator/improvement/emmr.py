@@ -3,12 +3,17 @@ from __future__ import annotations
 import math
 import sys
 from typing import cast
-from typing import TYPE_CHECKING
 import warnings
 
 import numpy as np
+import scipy.stats as scipy_stats
+import torch
 
 from optuna._experimental import experimental_class
+from optuna._gp import acqf
+from optuna._gp import gp
+from optuna._gp import prior
+from optuna._gp import search_space as gp_search_space
 from optuna.samplers._lazy_random_state import LazyRandomState
 from optuna.search_space import intersection_search_space
 from optuna.study import StudyDirection
@@ -17,24 +22,6 @@ from optuna.terminator.improvement.evaluator import BaseImprovementEvaluator
 from optuna.trial import FrozenTrial
 from optuna.trial import TrialState
 
-
-if TYPE_CHECKING:
-    import scipy.stats as scipy_stats
-    import torch
-
-    from optuna._gp import acqf
-    from optuna._gp import gp
-    from optuna._gp import prior
-    from optuna._gp import search_space as gp_search_space
-else:
-    from optuna._imports import _LazyImport
-
-    torch = _LazyImport("torch")
-    gp = _LazyImport("optuna._gp.gp")
-    acqf = _LazyImport("optuna._gp.acqf")
-    prior = _LazyImport("optuna._gp.prior")
-    gp_search_space = _LazyImport("optuna._gp.search_space")
-    scipy_stats = _LazyImport("scipy.stats")
 
 MARGIN_FOR_NUMARICAL_STABILITY = 0.1
 

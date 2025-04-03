@@ -5,23 +5,15 @@ from enum import IntEnum
 import math
 import threading
 from typing import Any
-from typing import TYPE_CHECKING
 
 import numpy as np
+import scipy.stats.qmc as qmc
 
 from optuna.distributions import BaseDistribution
 from optuna.distributions import CategoricalDistribution
 from optuna.distributions import FloatDistribution
 from optuna.distributions import IntDistribution
 from optuna.trial import FrozenTrial
-
-
-if TYPE_CHECKING:
-    import scipy.stats.qmc as qmc
-else:
-    from optuna._imports import _LazyImport
-
-    qmc = _LazyImport("scipy.stats.qmc")
 
 
 _threading_lock = threading.Lock()

@@ -21,7 +21,6 @@ import sqlalchemy.exc
 import yaml
 
 import optuna
-from optuna._imports import _LazyImport
 from optuna.exceptions import CLIUsageError
 from optuna.exceptions import ExperimentalWarning
 from optuna.storages import BaseStorage
@@ -31,10 +30,9 @@ from optuna.storages import JournalStorage
 from optuna.storages import RDBStorage
 from optuna.storages.journal import JournalFileBackend
 from optuna.storages.journal import JournalRedisBackend
+from optuna.study import _dataframe
 from optuna.trial import TrialState
 
-
-_dataframe = _LazyImport("optuna.study._dataframe")
 
 _DATETIME_FORMAT = "%Y-%m-%d %H:%M:%S"
 

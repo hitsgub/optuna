@@ -1,23 +1,15 @@
 from __future__ import annotations
 
-from typing import TYPE_CHECKING
 import warnings
 
 import numpy as np
+import scipy.stats as ss
 
 import optuna
 from optuna._experimental import experimental_class
 from optuna.pruners import BasePruner
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial
-
-
-if TYPE_CHECKING:
-    import scipy.stats as ss
-else:
-    from optuna._imports import _LazyImport
-
-    ss = _LazyImport("scipy.stats")
 
 
 @experimental_class("3.6.0")

@@ -3,29 +3,20 @@ from __future__ import annotations
 from datetime import datetime
 import json
 import threading
-from typing import TYPE_CHECKING
+
+import grpc
 
 from optuna import logging
-from optuna._imports import _LazyImport
 from optuna.distributions import distribution_to_json
 from optuna.distributions import json_to_distribution
 from optuna.exceptions import DuplicatedStudyError
 from optuna.exceptions import UpdateFinishedTrialError
 from optuna.storages import BaseStorage
+from optuna.storages._grpc.auto_generated import api_pb2
+from optuna.storages._grpc.auto_generated import api_pb2_grpc
 from optuna.study._study_direction import StudyDirection
 from optuna.trial._frozen import FrozenTrial
 from optuna.trial._state import TrialState
-
-
-if TYPE_CHECKING:
-    import grpc
-
-    from optuna.storages._grpc.auto_generated import api_pb2
-    from optuna.storages._grpc.auto_generated import api_pb2_grpc
-else:
-    api_pb2 = _LazyImport("optuna.storages._grpc.auto_generated.api_pb2")
-    api_pb2_grpc = _LazyImport("optuna.storages._grpc.auto_generated.api_pb2_grpc")
-    grpc = _LazyImport("grpc")
 
 
 _logger = logging.get_logger(__name__)

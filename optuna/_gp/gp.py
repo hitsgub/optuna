@@ -4,22 +4,14 @@ from collections.abc import Callable
 from dataclasses import dataclass
 import math
 from typing import Any
-from typing import TYPE_CHECKING
 import warnings
 
 import numpy as np
+import scipy.optimize as so
+import torch
 
 from optuna.logging import get_logger
 
-
-if TYPE_CHECKING:
-    import scipy.optimize as so
-    import torch
-else:
-    from optuna._imports import _LazyImport
-
-    so = _LazyImport("scipy.optimize")
-    torch = _LazyImport("torch")
 
 logger = get_logger(__name__)
 

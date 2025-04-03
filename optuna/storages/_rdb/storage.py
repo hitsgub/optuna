@@ -17,50 +17,31 @@ import random
 import sqlite3
 import time
 from typing import Any
-from typing import TYPE_CHECKING
 import uuid
+
+import alembic.command as alembic_command
+import alembic.config as alembic_config
+import alembic.migration as alembic_migration
+import alembic.script as alembic_script
+import sqlalchemy
+import sqlalchemy.dialects.mysql as sqlalchemy_dialects_mysql
+import sqlalchemy.dialects.sqlite as sqlalchemy_dialects_sqlite
+import sqlalchemy.exc as sqlalchemy_exc
+import sqlalchemy.orm as sqlalchemy_orm
+import sqlalchemy.sql.functions as sqlalchemy_sql_functions  # noqa: F401
 
 import optuna
 from optuna import distributions
 from optuna import version
-from optuna._imports import _LazyImport
 from optuna._typing import JSONSerializable
 from optuna.storages._base import BaseStorage
 from optuna.storages._base import DEFAULT_STUDY_NAME_PREFIX
 from optuna.storages._heartbeat import BaseHeartbeat
+import optuna.storages._rdb.models as models
 from optuna.study._frozen import FrozenStudy
 from optuna.study._study_direction import StudyDirection
 from optuna.trial import FrozenTrial
 from optuna.trial import TrialState
-
-
-if TYPE_CHECKING:
-    import alembic.command as alembic_command
-    import alembic.config as alembic_config
-    import alembic.migration as alembic_migration
-    import alembic.script as alembic_script
-    import sqlalchemy
-    import sqlalchemy.dialects.mysql as sqlalchemy_dialects_mysql
-    import sqlalchemy.dialects.sqlite as sqlalchemy_dialects_sqlite
-    import sqlalchemy.exc as sqlalchemy_exc
-    import sqlalchemy.orm as sqlalchemy_orm
-    import sqlalchemy.sql.functions as sqlalchemy_sql_functions
-
-    from optuna.storages._rdb import models
-else:
-    alembic_command = _LazyImport("alembic.command")
-    alembic_config = _LazyImport("alembic.config")
-    alembic_migration = _LazyImport("alembic.migration")
-    alembic_script = _LazyImport("alembic.script")
-
-    sqlalchemy = _LazyImport("sqlalchemy")
-    sqlalchemy_dialects_mysql = _LazyImport("sqlalchemy.dialects.mysql")
-    sqlalchemy_dialects_sqlite = _LazyImport("sqlalchemy.dialects.sqlite")
-    sqlalchemy_exc = _LazyImport("sqlalchemy.exc")
-    sqlalchemy_orm = _LazyImport("sqlalchemy.orm")
-    sqlalchemy_sql_functions = _LazyImport("sqlalchemy.sql.functions")
-
-    models = _LazyImport("optuna.storages._rdb.models")
 
 
 _logger = optuna.logging.get_logger(__name__)

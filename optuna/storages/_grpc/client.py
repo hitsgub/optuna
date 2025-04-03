@@ -6,34 +6,24 @@ import copy
 import json
 import threading
 from typing import Any
-from typing import TYPE_CHECKING
 import uuid
 
+import grpc
+
 from optuna._experimental import experimental_class
-from optuna._imports import _LazyImport
 from optuna.distributions import BaseDistribution
 from optuna.distributions import distribution_to_json
 from optuna.exceptions import DuplicatedStudyError
 from optuna.exceptions import UpdateFinishedTrialError
 from optuna.storages._base import BaseStorage
 from optuna.storages._base import DEFAULT_STUDY_NAME_PREFIX
+from optuna.storages._grpc.auto_generated import api_pb2
+from optuna.storages._grpc.auto_generated import api_pb2_grpc
+import optuna.storages._grpc.servicer as grpc_servicer
 from optuna.study._frozen import FrozenStudy
 from optuna.study._study_direction import StudyDirection
 from optuna.trial._frozen import FrozenTrial
 from optuna.trial._state import TrialState
-
-
-if TYPE_CHECKING:
-    import grpc
-
-    from optuna.storages._grpc import servicer as grpc_servicer
-    from optuna.storages._grpc.auto_generated import api_pb2
-    from optuna.storages._grpc.auto_generated import api_pb2_grpc
-else:
-    api_pb2 = _LazyImport("optuna.storages._grpc.auto_generated.api_pb2")
-    api_pb2_grpc = _LazyImport("optuna.storages._grpc.auto_generated.api_pb2_grpc")
-    grpc = _LazyImport("grpc")
-    grpc_servicer = _LazyImport("optuna.storages._grpc.servicer")
 
 
 def create_insecure_channel(host: str, port: int) -> grpc.Channel:

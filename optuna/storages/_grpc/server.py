@@ -1,23 +1,14 @@
 from __future__ import annotations
 
 from concurrent.futures import ThreadPoolExecutor
-from typing import TYPE_CHECKING
+
+import grpc
 
 from optuna import logging
 from optuna._experimental import experimental_func
-from optuna._imports import _LazyImport
 from optuna.storages import BaseStorage
-
-
-if TYPE_CHECKING:
-    import grpc
-
-    from optuna.storages._grpc import servicer as grpc_servicer
-    from optuna.storages._grpc.auto_generated import api_pb2_grpc
-else:
-    grpc = _LazyImport("grpc")
-    grpc_servicer = _LazyImport("optuna.storages._grpc.servicer")
-    api_pb2_grpc = _LazyImport("optuna.storages._grpc.auto_generated.api_pb2_grpc")
+from optuna.storages._grpc.auto_generated import api_pb2_grpc
+import optuna.storages._grpc.servicer as grpc_servicer
 
 
 _logger = logging.get_logger(__name__)

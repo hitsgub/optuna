@@ -5,23 +5,15 @@ import threading
 from types import TracebackType
 from typing import Any
 from typing import IO
-from typing import TYPE_CHECKING
 
 import fakeredis
+import grpc
 
 import optuna
 from optuna.storages import BaseStorage
 from optuna.storages import GrpcStorageProxy
 from optuna.storages.journal import JournalFileBackend
 from optuna.testing.tempfile_pool import NamedTemporaryFilePool
-
-
-if TYPE_CHECKING:
-    import grpc
-else:
-    from optuna._imports import _LazyImport
-
-    grpc = _LazyImport("grpc")
 
 
 STORAGE_MODES: list[Any] = [

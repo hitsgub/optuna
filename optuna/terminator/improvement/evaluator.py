@@ -1,11 +1,15 @@
 from __future__ import annotations
 
 import abc
-from typing import TYPE_CHECKING
 
 import numpy as np
 
 from optuna._experimental import experimental_class
+from optuna._gp import acqf
+from optuna._gp import gp
+from optuna._gp import optim_sample
+from optuna._gp import prior
+from optuna._gp import search_space as gp_search_space
 from optuna.distributions import BaseDistribution
 from optuna.samplers._lazy_random_state import LazyRandomState
 from optuna.search_space import intersection_search_space
@@ -13,22 +17,6 @@ from optuna.study import StudyDirection
 from optuna.trial import FrozenTrial
 from optuna.trial import TrialState
 
-
-if TYPE_CHECKING:
-
-    from optuna._gp import acqf
-    from optuna._gp import gp
-    from optuna._gp import optim_sample
-    from optuna._gp import prior
-    from optuna._gp import search_space as gp_search_space
-else:
-    from optuna._imports import _LazyImport
-
-    gp = _LazyImport("optuna._gp.gp")
-    optim_sample = _LazyImport("optuna._gp.optim_sample")
-    acqf = _LazyImport("optuna._gp.acqf")
-    prior = _LazyImport("optuna._gp.prior")
-    gp_search_space = _LazyImport("optuna._gp.search_space")
 
 DEFAULT_TOP_TRIALS_RATIO = 0.5
 DEFAULT_MIN_N_TRIALS = 20

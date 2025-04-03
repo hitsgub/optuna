@@ -25,13 +25,13 @@ from optuna import storages
 from optuna._convert_positional_args import convert_positional_args
 from optuna._deprecated import deprecated_func
 from optuna._experimental import experimental_func
-from optuna._imports import _LazyImport
 from optuna._typing import JSONSerializable
 from optuna.distributions import _convert_old_distribution_to_new_distribution
 from optuna.distributions import BaseDistribution
 from optuna.storages._heartbeat import is_heartbeat_enabled
 from optuna.study._constrained_optimization import _CONSTRAINTS_KEY
 from optuna.study._constrained_optimization import _get_feasible_trials
+import optuna.study._dataframe as _dataframe
 from optuna.study._multi_objective import _get_pareto_front_trials
 from optuna.study._optimize import _optimize
 from optuna.study._study_direction import StudyDirection
@@ -40,8 +40,6 @@ from optuna.study._tell import _tell_with_warning
 from optuna.trial import create_trial
 from optuna.trial import TrialState
 
-
-_dataframe = _LazyImport("optuna.study._dataframe")
 
 if TYPE_CHECKING:
     from optuna.study._dataframe import pd

@@ -1,9 +1,9 @@
 from __future__ import annotations
 
 import math
-from typing import TYPE_CHECKING
 
 import numpy as np
+import scipy.optimize as so
 
 from optuna._gp.acqf import AcquisitionFunctionParams
 from optuna._gp.acqf import eval_acqf_no_grad
@@ -13,13 +13,6 @@ from optuna._gp.search_space import sample_normalized_params
 from optuna._gp.search_space import ScaleType
 from optuna.logging import get_logger
 
-
-if TYPE_CHECKING:
-    import scipy.optimize as so
-else:
-    from optuna import _LazyImport
-
-    so = _LazyImport("scipy.optimize")
 
 _logger = get_logger(__name__)
 

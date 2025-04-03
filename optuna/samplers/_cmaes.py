@@ -11,12 +11,12 @@ from typing import NamedTuple
 from typing import TYPE_CHECKING
 from typing import Union
 
+import cmaes
 import numpy as np
 
 import optuna
 from optuna import logging
 from optuna._experimental import warn_experimental_argument
-from optuna._imports import _LazyImport
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution
 from optuna.distributions import FloatDistribution
@@ -30,11 +30,7 @@ from optuna.trial import TrialState
 
 
 if TYPE_CHECKING:
-    import cmaes
-
     CmaClass = Union[cmaes.CMA, cmaes.SepCMA, cmaes.CMAwM]
-else:
-    cmaes = _LazyImport("cmaes")
 
 _logger = logging.get_logger(__name__)
 

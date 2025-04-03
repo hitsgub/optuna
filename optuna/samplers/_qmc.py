@@ -10,7 +10,6 @@ import numpy as np
 import optuna
 from optuna import logging
 from optuna._experimental import experimental_class
-from optuna._imports import _LazyImport
 from optuna._transform import _SearchSpaceTransform
 from optuna.distributions import BaseDistribution
 from optuna.distributions import CategoricalDistribution
@@ -269,7 +268,7 @@ class QMCSampler(BaseSampler):
 
     def _sample_qmc(self, study: Study, search_space: dict[str, BaseDistribution]) -> np.ndarray:
         # Lazy import because the `scipy.stats.qmc` is slow to import.
-        qmc_module = _LazyImport("scipy.stats.qmc")
+        import scipy.stats.qmc as qmc_module
 
         sample_id = self._find_sample_id(study)
         d = len(search_space)

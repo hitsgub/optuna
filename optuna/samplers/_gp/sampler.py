@@ -7,10 +7,16 @@ from typing import cast
 from typing import TYPE_CHECKING
 
 import numpy as np
+import torch
 
 import optuna
 from optuna._experimental import experimental_class
 from optuna._experimental import warn_experimental_argument
+import optuna._gp.acqf as acqf
+import optuna._gp.gp as gp
+import optuna._gp.optim_mixed as optim_mixed
+import optuna._gp.prior as prior
+import optuna._gp.search_space as gp_search_space
 from optuna.distributions import BaseDistribution
 from optuna.samplers._base import _CONSTRAINTS_KEY
 from optuna.samplers._base import _process_constraints_after_trial
@@ -22,24 +28,7 @@ from optuna.trial import TrialState
 
 
 if TYPE_CHECKING:
-    import torch
-
-    import optuna._gp.acqf as acqf
-    import optuna._gp.gp as gp
-    import optuna._gp.optim_mixed as optim_mixed
-    import optuna._gp.prior as prior
-    import optuna._gp.search_space as gp_search_space
     from optuna.study import Study
-else:
-    from optuna._imports import _LazyImport
-
-    torch = _LazyImport("torch")
-    gp_search_space = _LazyImport("optuna._gp.search_space")
-    gp = _LazyImport("optuna._gp.gp")
-    optim_mixed = _LazyImport("optuna._gp.optim_mixed")
-    acqf = _LazyImport("optuna._gp.acqf")
-    prior = _LazyImport("optuna._gp.prior")
-
 
 EPS = 1e-10
 

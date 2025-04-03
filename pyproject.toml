@@ -37,7 +37,9 @@ dependencies = [
   "packaging>=20.0",
   "sqlalchemy>=1.4.2",
   "tqdm",
-  "PyYAML",  # Only used in `optuna/cli.py`.
+  "PyYAML", # Only used in `optuna/cli.py`.
+  "cmaes>=0.11.1",
+  "torch>=2.5.1",
 ]
 dynamic = ["version"]
 

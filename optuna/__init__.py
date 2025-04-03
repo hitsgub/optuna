@@ -1,5 +1,7 @@
+from optuna import artifacts
 from optuna import distributions
 from optuna import exceptions
+from optuna import importance
 from optuna import integration
 from optuna import logging
 from optuna import pruners
@@ -9,7 +11,7 @@ from optuna import storages
 from optuna import study
 from optuna import trial
 from optuna import version
-from optuna._imports import _LazyImport
+from optuna import visualization
 from optuna.exceptions import TrialPruned
 from optuna.study import copy_study
 from optuna.study import create_study
@@ -50,8 +52,3 @@ __all__ = [
     "version",
     "visualization",
 ]
-
-
-artifacts = _LazyImport("optuna.artifacts")
-importance = _LazyImport("optuna.importance")
-visualization = _LazyImport("optuna.visualization")
