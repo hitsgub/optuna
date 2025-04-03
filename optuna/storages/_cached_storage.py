@@ -10,7 +10,7 @@ from typing import Any
 import optuna
 from optuna import distributions
 from optuna._typing import JSONSerializable
-from optuna.storages import BaseStorage
+from optuna.storages._base import BaseStorage
 from optuna.storages._heartbeat import BaseHeartbeat
 from optuna.storages._rdb.storage import RDBStorage
 from optuna.study._frozen import FrozenStudy

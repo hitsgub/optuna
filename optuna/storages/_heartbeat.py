@@ -9,7 +9,7 @@ from types import TracebackType
 
 import optuna
 from optuna._experimental import experimental_func
-from optuna.storages import BaseStorage
+from optuna.storages._base import BaseStorage
 from optuna.trial import FrozenTrial
 from optuna.trial import TrialState
 

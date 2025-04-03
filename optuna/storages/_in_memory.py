@@ -12,7 +12,7 @@ import optuna
 from optuna import distributions  # NOQA
 from optuna._typing import JSONSerializable
 from optuna.exceptions import DuplicatedStudyError
-from optuna.storages import BaseStorage
+from optuna.storages._base import BaseStorage
 from optuna.storages._base import DEFAULT_STUDY_NAME_PREFIX
 from optuna.study._frozen import FrozenStudy
 from optuna.study._study_direction import StudyDirection
