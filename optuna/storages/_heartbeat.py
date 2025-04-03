@@ -6,12 +6,16 @@ import copy
 from threading import Event
 from threading import Thread
 from types import TracebackType
+from typing import TYPE_CHECKING
 
 import optuna
 from optuna._experimental import experimental_func
-from optuna.storages._base import BaseStorage
 from optuna.trial import FrozenTrial
 from optuna.trial import TrialState
+
+
+if TYPE_CHECKING:
+    from optuna.storages._base import BaseStorage
 
 
 class BaseHeartbeat(metaclass=abc.ABCMeta):
