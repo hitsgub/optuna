@@ -1,20 +1,21 @@
 from __future__ import annotations
 
 import abc
-from collections.abc import Container
-from collections.abc import Sequence
-from typing import Any
 from typing import cast
 from typing import TYPE_CHECKING
 
-from optuna._typing import JSONSerializable
-from optuna.distributions import BaseDistribution
 from optuna.exceptions import UpdateFinishedTrialError
-from optuna.study._frozen import FrozenStudy
 from optuna.study._study_direction import StudyDirection
 
 
 if TYPE_CHECKING:
+    from collections.abc import Container
+    from collections.abc import Sequence
+    from typing import Any
+
+    from optuna._typing import JSONSerializable
+    from optuna.distributions import BaseDistribution
+    from optuna.study._frozen import FrozenStudy
     from optuna.trial import FrozenTrial
     from optuna.trial import TrialState
 
